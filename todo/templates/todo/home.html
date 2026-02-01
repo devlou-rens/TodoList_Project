@@ -1,0 +1,51 @@
+{% load static %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo</title>
+    <link rel="stylesheet" href="{% static 'todo/style.css' %}">
+    <script src="{% static 'todo/script.js' %}"></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="logout">
+        {{ request.user.username }} |
+        <a href="{% url 'logout' %}" style="display: inline-block; width: auto; padding: 6px 16px; background: transparent; color: var(--muted); border: 1px solid var(--border); border-radius: 6px; font-size: 12px; text-align: center; text-decoration: none; transition: opacity 0.2s ease;">Logout</a>
+    </div>
+
+    <h2>TODO LIST</h2>
+
+    <a href="{% url 'add_todo' %}" style="display: block; width: 100%; padding: 10px; background: transparent; color: var(--accent); border: 1px solid var(--accent); border-radius: 6px; font-size: 13px; text-align: center; text-decoration: none; margin-bottom: 20px; transition: opacity 0.2s ease;">+ Add Task</a>
+
+    {% for todo in todos %}
+        <div class="todo-item {% if todo.completed %}completed{% endif %}">
+            <strong>{{ todo.title }}</strong>
+            <p>{{ todo.description }}</p>
+
+            <div style="display: flex; gap: 8px; margin-top: 10px; margin-bottom: 6px;">
+                <a href="{% url 'toggle_todo' todo.id %}" style="flex: 1; display: block; padding: 6px; text-align: center; text-decoration: none; border-radius: 6px; font-size: 12px; transition: all 0.2s ease;
+                    {% if todo.completed %}
+                        background: transparent; color: var(--accent); border: 1px solid var(--accent);
+                    {% else %}
+                        background: transparent; color: #4caf50; border: 1px solid #4caf50;
+                    {% endif %}
+                ">{% if todo.completed %}Mark as Not Done{% else %}Mark as Done{% endif %}</a>
+            </div>
+
+            <div class="actions">
+                <a href="{% url 'update_todo' todo.id %}" style="display: inline-block; width: auto; padding: 6px 16px; background: transparent; color: var(--accent); border: 1px solid var(--accent); border-radius: 6px; font-size: 12px; text-align: center; text-decoration: none; transition: opacity 0.2s ease;">Edit</a>
+                <a href="{% url 'delete_todo' todo.id %}" onclick="return confirmDelete()" style="display: inline-block; width: auto; padding: 6px 16px; background: transparent; color: var(--danger); border: 1px solid var(--danger); border-radius: 6px; font-size: 12px; text-align: center; text-decoration: none; transition: opacity 0.2s ease;">Delete</a>
+            </div>
+        </div>
+    {% empty %}
+        <p>No tasks yet.</p>
+    {% endfor %}
+</div>
+
+</body>
+</html>
+
+</body>
+</html>

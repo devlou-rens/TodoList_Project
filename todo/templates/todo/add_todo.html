@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if todo %}Update{% else %}Add{% endif %} Todo</title>
+    <link rel="stylesheet" href="{% static 'todo/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h2>{% if todo %}Update{% else %}Add{% endif %} Todo</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Title" value="{{ todo.title|default_if_none:'' }}" required>
+        <textarea name="description" placeholder="Description">{{ todo.description|default_if_none:'' }}</textarea>
+        {% if todo %}
+        <label style="color: var(--muted); font-size: 13px; display: flex; align-items: center; gap: 8px; margin-bottom: 14px;">
+            <input type="checkbox" name="completed" {% if todo.completed %}checked{% endif %} style="width: auto; margin-bottom: 0;">
+            Completed
+        </label>
+        {% endif %}
+        <button type="submit">{% if todo %}Update{% else %}Add{% endif %}</button>
+    </form>
+
+    <p style="margin-top: 15px; text-align: center;">
+        <a href="{% url 'home' %}" style="display: block; width: 100%; padding: 12px; background: var(--card); color: var(--text); border: 1px solid var(--border); border-radius: 6px; font-size: 14px; text-align: center; margin-top: 14px; transition: opacity 0.2s ease;">Back</a>
+    </p>
+</div>
+
+</body>
+</html>

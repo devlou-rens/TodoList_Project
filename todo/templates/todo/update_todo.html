@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Todo</title>
+    <link rel="stylesheet" href="{% static 'todo/style.css' %}">
+    <script src="{% static 'todo/script.js' %}"></script>
+</head>
+<body>
+
+<div class="container">
+    <h2>Update Todo</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Title" value="{{ todo.title|default_if_none:'' }}" required>
+        <textarea name="description" placeholder="Description">{{ todo.description|default_if_none:'' }}</textarea>
+        <button type="submit">Update</button>
+    </form>
+
+    <a href="{% url 'home' %}" style="display: block; width: 100%; padding: 12px; background: var(--card); color: var(--text); border: 1px solid var(--border); border-radius: 6px; font-size: 14px; text-align: center; margin-top: 14px; transition: opacity 0.2s ease;">Back</a>
+</div>
+
+</body>
+</html>
