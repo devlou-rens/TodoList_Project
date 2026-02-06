@@ -42,7 +42,7 @@ def login_user(request):
         else:
             messages.error(request, "Incorrect Email or Password Please Try Again!")
             messages.error(request, "Or Account doesn't Exist! Please Create one.")
-            return redirect('login')
+            return redirect('login') 
     return render(request, 'todo/login.html')
 
 # Logout

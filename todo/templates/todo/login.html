@@ -22,7 +22,7 @@
         Don't have an account?
         <a href="{% url 'register' %}">Create one</a>
     </p>
-
+ 
     {% for message in messages %}
     <p class="message {{ message.tags }}">{{ message }}</p>
     {% endfor %}
