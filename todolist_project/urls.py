@@ -21,4 +21,3 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('todo.urls')),  # include todo app URLs
 ]
- 
