@@ -1,13 +1,13 @@
 {% load static %}
-{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Todo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'todo/style.css' %}">
     <script src="{% static 'todo/script.js' %}"></script>
 </head>
-<body> 
+<body>
 
 <div class="container">
     <div class="logout">
@@ -43,9 +43,6 @@
         <p>No tasks yet.</p>
     {% endfor %}
 </div>
-
-</body>
-</html>
 
 </body>
 </html>

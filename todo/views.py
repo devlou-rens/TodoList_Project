@@ -77,4 +77,4 @@ def delete_todo(request, id):
     return redirect('home')
 
 
-# Create your views here.
+
